@@ -10,8 +10,6 @@
 
 在此处`npm run bundle` 等同于 `npx webpack`
 
-
-
 #### 运行 `npx webpack` 或者 `npm run bundle` 
 
 ```powershell
@@ -47,8 +45,6 @@ Entrypoint main = main.js
 `chunks`：文件对应的ID
 
 `chunk Name`：文件对应的名字
-
-
 
 #### `entry` 入口文件
 
@@ -93,8 +89,6 @@ const config = {
 }
 ```
 
-
-
 #### `output` 输出
 
 可以控制 webpack 如何向硬盘写入编译文件
@@ -132,8 +126,6 @@ const config = {
 // 输出 写入到硬盘：./dist/app.js, ./dist/search.js
 ```
 
-
-
 #### `mode` 打包模式
 
 通过选择 `development` 或 `production` 之中的一个，来设置 `mode` 参数，你可以启用相应模式下的 webpack 内置的优化
@@ -141,8 +133,6 @@ const config = {
 `production` ：默认 代码会被压缩
 
 `production` ：代码会保持原本的缩进格式 适合阅读
-
-
 
 #### `loader` 载入器
 
@@ -209,64 +199,3 @@ Entrypoint main = main.js
 ```
 
 可以发现除了 `main.js` 外，多了一个 `ff67a56a1f576aacff981d986c377725.jpg` 的文件
-
-这次打包引入了一个 `loader` === > `file-loader` 
-
-**`file-loader` 帮助我做的事情**
-
-1. 当 `file-loader` 检测到 `.jpg` 图片时，会把该图片资源移动到 `output` 的指定文件夹下，并且给图片设置名字（改名字可以自定义或是设置为默认的md5值）
-2. 当把图片挪到 `output` 的指定文件夹之后， `file-loader` 会把该图片相对于 `output` 指定的文件夹的相对位置参数作为返回值,返回给引入文件时定义的变量 
-3. 上述动作不限于图片，可以用于一切文件，
-
-**`file-loader` 的详细配置**
-
-在 `user` 里面添加一个 `options` 的属性，可以给对应的 `loader` 进行更详细的配置，具体的配置可[参考文档](https://www.webpackjs.com/loaders/)
-
-```js
-rules: [
-      {
-        test: /\.jpg$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'my_[name].[ext]',
-            outputPath: './images'
-          }
-        }
-      }
-    ]
-```
-
-打包后，图片的路径为 `/bundle/images/my_laopo.jpg` 即重新配置了文件名和路径
-
-```powershell
-              Asset      Size  Chunks             Chunk Names
-images/my_laopo.jpg  27.8 KiB          [emitted]
-            main.js  7.18 KiB    main  [emitted]  main
-```
-
-同样的，如果需要打包多种图片类型只需要配置
-
-```js
-test: /\.(png|jpg|gif)$/
-```
-
-如果引入的是网络图片，如 `https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3104253719,1351275423&fm=26&gp=0.jpg` 则可以使用 `url-loader` ，具体配置可[参考文档](https://www.webpackjs.com/loaders/)
-
-```js
-rules: [
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            name: 'my_[name].[ext]',
-            outputPath: './images'
-          }
-        }
-      }
-    ]
-```
-
-
-
