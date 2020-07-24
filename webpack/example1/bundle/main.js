@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"ff67a56a1f576aacff981d986c377725.jpg\");\n\n//# sourceURL=webpack:///./src/images/laopo.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"images/my_laopo.jpg\");\n\n//# sourceURL=webpack:///./src/images/laopo.jpg?");
 
 /***/ }),
 

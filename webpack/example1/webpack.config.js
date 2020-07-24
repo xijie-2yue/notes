@@ -17,7 +17,11 @@ module.exports = {
       {
         test: /\.jpg$/, // 就是筛选特定的文件, 一般就是以后缀名为识别码
         use: {  // 就是采用哪个具体的loader
-          loader: 'file-loader'
+          loader: 'file-loader',
+          options: {
+            name: 'my_[name].[ext]',
+            outputPath: './images'
+          }
         }
       }
     ]
