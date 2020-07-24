@@ -81,56 +81,68 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./js/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/content.js":
-/*!***********************!*\
-  !*** ./js/content.js ***!
-  \***********************/
+/***/ "./src/images/laopo.jpg":
+/*!******************************!*\
+  !*** ./src/images/laopo.jpg ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"ff67a56a1f576aacff981d986c377725.jpg\");\n\n//# sourceURL=webpack:///./src/images/laopo.jpg?");
+
+/***/ }),
+
+/***/ "./src/js/content.js":
+/*!***************************!*\
+  !*** ./src/js/content.js ***!
+  \***************************/
 /*! exports provided: createContent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createContent\", function() { return createContent; });\nfunction createContent(root) {\r\n  let el = document.createElement('p')\r\n  el.innerText = '这是内容'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./js/content.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createContent\", function() { return createContent; });\nfunction createContent(root) {\r\n  let el = document.createElement('p')\r\n  el.innerText = '这是内容'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./src/js/content.js?");
 
 /***/ }),
 
-/***/ "./js/footer.js":
-/*!**********************!*\
-  !*** ./js/footer.js ***!
-  \**********************/
+/***/ "./src/js/footer.js":
+/*!**************************!*\
+  !*** ./src/js/footer.js ***!
+  \**************************/
 /*! exports provided: createFooter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createFooter\", function() { return createFooter; });\nfunction createFooter(root) {\r\n  let el = document.createElement('p')\r\n  el.innerText = '这是页脚'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./js/footer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createFooter\", function() { return createFooter; });\nfunction createFooter(root) {\r\n  let el = document.createElement('p')\r\n  el.innerText = '这是页脚'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./src/js/footer.js?");
 
 /***/ }),
 
-/***/ "./js/header.js":
-/*!**********************!*\
-  !*** ./js/header.js ***!
-  \**********************/
+/***/ "./src/js/header.js":
+/*!**************************!*\
+  !*** ./src/js/header.js ***!
+  \**************************/
 /*! exports provided: createHeader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createHeader\", function() { return createHeader; });\nfunction createHeader(root) {\r\n  let el = document.createElement('h3')\r\n  el.innerText = '这是标题'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./js/header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createHeader\", function() { return createHeader; });\nfunction createHeader(root) {\r\n  let el = document.createElement('h3')\r\n  el.innerText = '这是标题'\r\n  \r\n  root.appendChild(el)\r\n}\n\n//# sourceURL=webpack:///./src/js/header.js?");
 
 /***/ }),
 
-/***/ "./js/index.js":
-/*!*********************!*\
-  !*** ./js/index.js ***!
-  \*********************/
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./js/header.js\");\n/* harmony import */ var _content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./content */ \"./js/content.js\");\n/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footer */ \"./js/footer.js\");\n\r\n\r\n\r\n\r\nlet root = document.querySelector('body')\r\n\r\nObject(_header__WEBPACK_IMPORTED_MODULE_0__[\"createHeader\"])(root)\r\nObject(_content__WEBPACK_IMPORTED_MODULE_1__[\"createContent\"])(root)\r\nObject(_footer__WEBPACK_IMPORTED_MODULE_2__[\"createFooter\"])(root)\n\n//# sourceURL=webpack:///./js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/js/header.js\");\n/* harmony import */ var _content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./content */ \"./src/js/content.js\");\n/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footer */ \"./src/js/footer.js\");\n/* harmony import */ var _images_laopo_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/laopo.jpg */ \"./src/images/laopo.jpg\");\n\r\n\r\n\r\n\r\n\r\nconsole.log(`img的类型--->${typeof _images_laopo_jpg__WEBPACK_IMPORTED_MODULE_3__[\"default\"]}--->${_images_laopo_jpg__WEBPACK_IMPORTED_MODULE_3__[\"default\"]}`)\r\n\r\nlet root = document.querySelector('body')\r\n\r\nObject(_header__WEBPACK_IMPORTED_MODULE_0__[\"createHeader\"])(root)\r\nObject(_content__WEBPACK_IMPORTED_MODULE_1__[\"createContent\"])(root)\r\nObject(_footer__WEBPACK_IMPORTED_MODULE_2__[\"createFooter\"])(root)\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ })
 

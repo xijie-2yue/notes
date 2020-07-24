@@ -134,3 +134,68 @@ const config = {
 
 `production` ：代码会保持原本的缩进格式 适合阅读
 
+#### `loader` 载入器
+
+当在 `index.js` 中引入图片文件时
+
+```js
+import img from '../images/laopo.jpg'
+console.log(`img的类型--->${typeof img}--->${img}`)
+```
+
+此时打包就会报错
+
+```powershell
+ERROR in ./src/images/laopo.jpg 1:0
+Module parse failed: Unexpected character '�' (1:0)
+You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders
+(Source code omitted for this binary file)
+ @ ./src/js/index.js 5:0-37 6:32-35 6:42-45
+```
+
+报错提示： `You may need an appropriate loader to handle this file type, currently no loaders are configured to process this file.`
+
+意思即为：*<u>您可能需要一个适当的加载器来处理此文件类型，目前没有配置加载器来处理此文件</u>*。
+
+打包处理出现了问题，是因为webpack默认<u>只知道如何打包js文件</u>，但是其他文件就不知道如何打包，这个时候我们就需要自己主动去定义能够解析图片文件的<u>loader</u>了
+
+**`loader` 配置方案**
+
+```js
+module: {
+    rules: [
+      {
+        test: /\.jpg$/,
+        use: {
+          loader: 'file-loader'
+        }
+      }
+    ]
+  }
+```
+
+`module` 属性里面是一个对象，对象的 `rules` 属性值是一个数据，内部的每个数组项目都是对某一 类文件进行 `loader` 的配置对象
+
+`test`：就是筛选特定的文件，一般就是以后缀名为识别码
+
+`use`：就是采用哪个具体的 `loader`
+
+此时再进行一次打包
+
+```powershell
+Hash: 9718c06a6b0a41b43a0a
+Version: webpack 4.43.0
+Time: 116ms
+Built at: 2020-07-24 21:47:05
+                               Asset      Size  Chunks             Chunk Names
+ff67a56a1f576aacff981d986c377725.jpg  27.8 KiB          [emitted]
+                             main.js   7.2 KiB    main  [emitted]  main
+Entrypoint main = main.js
+[./src/images/laopo.jpg] 80 bytes {main} [built]
+[./src/js/content.js] 141 bytes {main} [built]
+[./src/js/footer.js] 140 bytes {main} [built]
+[./src/js/header.js] 141 bytes {main} [built]
+[./src/js/index.js] 328 bytes {main} [built]
+```
+
+可以发现除了 `main.js` 外，多了一个 `ff67a56a1f576aacff981d986c377725.jpg` 的文件
