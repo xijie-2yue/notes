@@ -17,6 +17,7 @@ export default function mountComponent(virtualDOM, container) {
     nextVirtualDOM = buildFunctionalComponent(virtualDOM)
   } else {
     // 类组件
+    nextVirtualDOM = buildStatefulComponent(virtualDOM)
   }
 
   // 判断得到的 Virtual Dom 是否是组件
@@ -34,4 +35,14 @@ export default function mountComponent(virtualDOM, container) {
 // 组件返回要渲染的 Virtual DOM
 function buildFunctionalComponent(virtualDOM) {
   return virtualDOM.type(virtualDOM.props || {})
+}
+
+// 处理类组件
+function buildStatefulComponent(virtualDOM) {
+  // 实例化类组件 得到类组件实例对象 并将 props 属性传递进类组件
+  const component = new virtualDOM.type(virtualDOM.props)
+  // 调用类组件中的render方法得到要渲染的 Virtual DOM
+  const nextVirtualDOM = component.render()
+  // 返回要渲染的 Virtual DOM
+  return nextVirtualDOM
 }
