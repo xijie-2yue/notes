@@ -43,6 +43,8 @@ function buildStatefulComponent(virtualDOM) {
   const component = new virtualDOM.type(virtualDOM.props)
   // 调用类组件中的render方法得到要渲染的 Virtual DOM
   const nextVirtualDOM = component.render()
+  // 存下实例对象
+  nextVirtualDOM.component = component
   // 返回要渲染的 Virtual DOM
   return nextVirtualDOM
 }

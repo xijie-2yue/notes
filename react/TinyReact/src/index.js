@@ -35,11 +35,11 @@ const newVDOM = (
   </div>
 )
 
-TinyReact.render(virtualDOM, root)
+// TinyReact.render(virtualDOM, root)
 
-setTimeout(() => {
-  TinyReact.render(newVDOM, root)
-}, 2000)
+// setTimeout(() => {
+//   TinyReact.render(newVDOM, root)
+// }, 2000)
 
 const Hello = (props) => <p>Hello {props.target}!</p>
 
@@ -51,16 +51,32 @@ class Person extends TinyReact.Component {
     // 否则 props 仅仅是 constructor 函数的参数而已
     // 将 props 传递给父类的好处是 当 props 发生更改时 父类可以帮助更新 props 更新组件视图
     super(props)
+
+    this.state = {
+      title: 'Hello!',
+      subTitle: 'React',
+    }
+
+    this.titleChange = this.titleChange.bind(this)
+  }
+
+  titleChange() {
+    this.setState({
+      title: 'Hi!',
+    })
   }
 
   render() {
     return (
       <div>
+        <h3>{this.state.title}</h3>
+        <h5>{this.state.subTitle}</h5>
         <p>姓名：{this.props.name}</p>
         <p>年龄：{this.props.age}</p>
+        <button onClick={this.titleChange}>Button</button>
       </div>
     )
   }
 }
 
-// TinyReact.render(<Person name="张三" age={18} />, root)
+TinyReact.render(<Person name="张三" age={18} />, root)
