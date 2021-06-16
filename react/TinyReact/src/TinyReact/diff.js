@@ -41,5 +41,19 @@ export default function diff(virtualDOM, container, oldDOM) {
     virtualDOM.children.forEach((child, i) => {
       diff(child, oldDOM, oldDOM.childNodes[i])
     })
+
+    // 删除多余节点
+    // 获取旧节点的数量
+    let oldChildNodes = oldDOM.childNodes
+    // 如果旧节点的数量多于要渲染的新节点的长度
+    if (oldChildNodes.length > virtualDOM.children.length) {
+      for (
+        let i = oldChildNodes.length - 1;
+        i > virtualDOM.children.length - 1;
+        i--
+      ) {
+        oldDOM.removeChild(oldChildNodes[i])
+      }
+    }
   }
 }

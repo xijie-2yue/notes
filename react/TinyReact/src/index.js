@@ -14,7 +14,7 @@ const virtualDOM = (
     {2 == 2 && <div>2</div>}
     <span>这是一段内容</span>
     <button onClick={() => alert('你好')}>点击我</button>
-    <h3>这个将会被删除</h3>
+    <h3>下面的文本将会被删除</h3>
     2, 3
   </div>
 )
@@ -22,7 +22,7 @@ const virtualDOM = (
 const newVDOM = (
   <div className="container">
     <h1>Hello World!</h1>
-    <h2 className="h2">(编码必杀技)</h2>
+    <h2 className="R">(编码必杀技)</h2>
     <div>
       嵌套1 <div>嵌套 1.1</div>
     </div>
@@ -31,7 +31,7 @@ const newVDOM = (
     {2 == 2 && <div>2222</div>}
     <span>这是一段内容</span>
     <button onClick={() => alert('Hello')}>点击我</button>
-    2, 3
+    <h3>下面的文本将会被删除</h3>
   </div>
 )
 
