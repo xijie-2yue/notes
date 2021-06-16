@@ -13,6 +13,8 @@ export default function createDOMElement(virtualDOM) {
   } else {
     // 创建元素节点
     newElement = document.createElement(virtualDOM.type)
+    // 设置/更新元素属性
+    updateElementNode(newElement, virtualDOM)
   }
   // 递归渲染子节点
   virtualDOM.children.forEach((child) => {
