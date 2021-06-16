@@ -4,7 +4,7 @@ const root = document.getElementById('root')
 
 const virtualDOM = (
   <div className="container">
-    <h1>Hello Tiny React!</h1>
+    <h1 className="hello">Hello Tiny React!</h1>
     <h2>(编码必杀技)</h2>
     <div>
       嵌套1 <div>嵌套 1.1</div>
@@ -19,8 +19,27 @@ const virtualDOM = (
   </div>
 )
 
-// console.log(virtualDOM)
-// TinyReact.render(virtualDOM, root)
+const newVDOM = (
+  <div className="container">
+    <h1>Hello World!</h1>
+    <h2 className="h2">(编码必杀技)</h2>
+    <div>
+      嵌套1 <div>嵌套 1.1</div>
+    </div>
+    <h6>(观察: 变成了h6标签)</h6>
+    {2 == 1 && <div>如果2和1相等渲染当前内容</div>}
+    {2 == 2 && <div>2222</div>}
+    <span>这是一段内容</span>
+    <button onClick={() => alert('Hello')}>点击我</button>
+    2, 3
+  </div>
+)
+
+TinyReact.render(virtualDOM, root)
+
+setTimeout(() => {
+  TinyReact.render(newVDOM, root)
+}, 2000)
 
 const Hello = (props) => <p>Hello {props.target}!</p>
 
@@ -44,4 +63,4 @@ class Person extends TinyReact.Component {
   }
 }
 
-TinyReact.render(<Person name="张三" age={18} />, root)
+// TinyReact.render(<Person name="张三" age={18} />, root)

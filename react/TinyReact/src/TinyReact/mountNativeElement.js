@@ -7,5 +7,9 @@ import createDOMElement from './createDOMElement'
  */
 export default function mountNativeElement(virtualDOM, container) {
   const newElement = createDOMElement(virtualDOM)
+
+  // 将 Virtual DOM 挂载到真实 DOM 对象的属性中 方便在对比时获取其 Virtual DOM
+  newElement.__virtualDOM__ = virtualDOM
+
   container.appendChild(newElement)
 }
