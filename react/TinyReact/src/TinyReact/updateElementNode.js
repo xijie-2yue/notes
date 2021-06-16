@@ -9,17 +9,17 @@ export default function updateElementNode(element, virtualDOM) {
   // 将属性对象中的属性名称放到一个数组中并循环数组
   Object.keys(newProps).forEach((propName) => {
     const newPropsValue = newProps[propName]
-    // 考虑属性名称是否以 on 开头 如果是就表示是个事件属性 onClick -> click
     if (propName.slice(0, 2) === 'on') {
+      // 考虑属性名称是否以 on 开头 如果是就表示是个事件属性 onClick -> click
       const eventName = propName.toLowerCase().slice(2)
       element.addEventListener(eventName, newPropsValue)
-      // 如果属性名称是 value 或者 checked 需要通过 [] 的形式添加
     } else if (propName === 'value' || propName === 'checked') {
+      // 如果属性名称是 value 或者 checked 需要通过 [] 的形式添加
       element[propName] = newPropsValue
-      // 刨除 children 因为它是子元素 不是属性
     } else if (propName !== 'children') {
-      // className 属性单独处理 不直接在元素上添加 class 属性是因为 class 是 JavaScript 中的关键字
+      // 刨除 children 因为它是子元素 不是属性
       if (propName === 'className') {
+        // className 属性单独处理 不直接在元素上添加 class 属性是因为 class 是 JavaScript 中的关键字
         element.setAttribute('class', newPropsValue)
       } else {
         // 普通属性
