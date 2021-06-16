@@ -22,6 +22,6 @@ const virtualDOM = (
 // console.log(virtualDOM)
 // TinyReact.render(virtualDOM, root)
 
-const Hello = () => <p>Hello TinyReact!</p>
+const Hello = (props) => <p>Hello {props.target}!</p>
 
-TinyReact.render(<Hello />, root)
+TinyReact.render(<Hello target="World" />, root)
