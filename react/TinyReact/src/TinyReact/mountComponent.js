@@ -11,6 +11,7 @@ import mountNativeElement from './mountNativeElement'
 export default function mountComponent(virtualDOM, container, oldDOM) {
   // 存放组件调用后返回的 Virtual DOM 的容器
   let nextVirtualDOM = null
+  let component = null
 
   // 区分函数型组件和类组件
   if (isFunctionalComponent(virtualDOM)) {
@@ -19,6 +20,8 @@ export default function mountComponent(virtualDOM, container, oldDOM) {
   } else {
     // 类组件
     nextVirtualDOM = buildStatefulComponent(virtualDOM)
+    component = nextVirtualDOM.component
+    component.componentWillMount()
   }
 
   // 判断得到的 Virtual Dom 是否是组件
@@ -28,6 +31,11 @@ export default function mountComponent(virtualDOM, container, oldDOM) {
   } else {
     // 如果是 Native Element 就去渲染
     mountNativeElement(nextVirtualDOM, container, oldDOM)
+  }
+
+  // 如果是组件 调用组件的生命周期
+  if (component) {
+    component.componentDidMount()
   }
 }
 

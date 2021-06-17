@@ -1,4 +1,5 @@
 import mountElement from './mountElement'
+import updateComponent from './updateComponent'
 
 /**
  * @description 更新组件时 进行组件的对比操作
@@ -15,6 +16,7 @@ export default function diffComponent(
 ) {
   if (isSameComponent(virtualDOM, oldComponent)) {
     // 相同组件的更新
+    updateComponent(virtualDOM, oldComponent, oldDOM, container)
   } else {
     // 不同组件的更新 直接渲染 并传入旧的DOM 对象进行处理
     mountElement(virtualDOM, container, oldDOM)

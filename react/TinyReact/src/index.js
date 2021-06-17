@@ -66,6 +66,30 @@ class Person extends TinyReact.Component {
     })
   }
 
+  componentWillMount() {
+    console.log('componentWillMount')
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps)
+  }
+
+  componentWillUpdate(nextProps) {
+    console.log('componentWillUpdate', nextProps)
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate', prevProps)
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+  }
+
   render() {
     return (
       <div>
@@ -93,5 +117,5 @@ TinyReact.render(<Person name="张三" age={18} />, root)
 
 setTimeout(() => {
   // TinyReact.render(<Cat />, root)
-  TinyReact.render(<Hello target="World" />, root)
+  TinyReact.render(<Person name="李四" age={20} />, root)
 }, 2000)
