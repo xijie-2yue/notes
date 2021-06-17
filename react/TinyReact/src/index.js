@@ -79,4 +79,19 @@ class Person extends TinyReact.Component {
   }
 }
 
+class Cat extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return <p>This is Cat Component~~</p>
+  }
+}
+
 TinyReact.render(<Person name="张三" age={18} />, root)
+
+setTimeout(() => {
+  // TinyReact.render(<Cat />, root)
+  TinyReact.render(<Hello target="World" />, root)
+}, 2000)

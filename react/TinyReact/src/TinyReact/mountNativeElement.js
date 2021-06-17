@@ -1,15 +1,23 @@
 import createDOMElement from './createDOMElement'
+import unmountNode from './unmountNode'
 
 /**
  * @description HTML原生节点的渲染
  * @param {Object} virtualDOM 需要转换的VDOM
  * @param {HtmlElement} container 需要挂载到的HTML节点
+ * @param {HTMLElement} oldDOM
  */
-export default function mountNativeElement(virtualDOM, container) {
+export default function mountNativeElement(virtualDOM, container, oldDOM) {
   const newElement = createDOMElement(virtualDOM)
+  if (oldDOM) {
+    container.insertBefore(newElement, oldDOM)
+  } else {
+    container.appendChild(newElement)
+  }
 
-  // 将 Virtual DOM 挂载到真实 DOM 对象的属性中 方便在对比时获取其 Virtual DOM
-  newElement.__virtualDOM__ = virtualDOM
+  if (oldDOM) {
+    unmountNode(oldDOM)
+  }
 
   // 获取组件实例对象
   const component = virtualDOM.component
@@ -18,6 +26,4 @@ export default function mountNativeElement(virtualDOM, container) {
     // 保存 DOM 对象
     component.setDOM(newElement)
   }
-
-  container.appendChild(newElement)
 }

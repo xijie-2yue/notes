@@ -6,8 +6,9 @@ import mountNativeElement from './mountNativeElement'
  * @description 渲染组件
  * @param {Object} virtualDOM
  * @param {HTMLElement} container
+ * @param {HTMLElement} oldDOM
  */
-export default function mountComponent(virtualDOM, container) {
+export default function mountComponent(virtualDOM, container, oldDOM) {
   // 存放组件调用后返回的 Virtual DOM 的容器
   let nextVirtualDOM = null
 
@@ -23,10 +24,10 @@ export default function mountComponent(virtualDOM, container) {
   // 判断得到的 Virtual Dom 是否是组件
   if (isFunction(nextVirtualDOM)) {
     // 如果是组件 继续调用 mountComponent 解剖组件
-    mountComponent(nextVirtualDOM, container)
+    mountComponent(nextVirtualDOM, container, oldDOM)
   } else {
     // 如果是 Native Element 就去渲染
-    mountNativeElement(nextVirtualDOM, container)
+    mountNativeElement(nextVirtualDOM, container, oldDOM)
   }
 }
 

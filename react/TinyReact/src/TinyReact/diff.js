@@ -1,4 +1,5 @@
 import createDOMElement from './createDOMElement'
+import diffComponent from './diffComponent'
 import isFunction from './isFunction'
 import mountElement from './mountElement'
 import updateElementNode from './updateElementNode'
@@ -13,6 +14,7 @@ import updateTextNode from './updateTextNode'
 export default function diff(virtualDOM, container, oldDOM) {
   // 获取更新前的 virtual DOM
   const oldVirtualDOM = oldDOM && oldDOM.__virtualDOM__
+  const oldComponent = oldVirtualDOM && oldVirtualDOM.component
   // 判断 oldDOM 是否存在
   if (!oldDOM) {
     // 如果不存在 不需要对比 直接将 Virtual DOM 转换为真实 DOM
@@ -27,6 +29,9 @@ export default function diff(virtualDOM, container, oldDOM) {
     const newDOM = createDOMElement(virtualDOM)
     // 用创建出来的真实 DOM 元素 替换旧的 DOM 元素
     oldDOM.parentNode.replaceChild(newDOM, oldDOM)
+  } else if (isFunction(virtualDOM)) {
+    // 要更新的是组件
+    diffComponent(virtualDOM, oldComponent, oldDOM, container)
   } else if (oldVirtualDOM && virtualDOM.type === oldVirtualDOM.type) {
     // 类型相同则直接修改节点内容
     if (virtualDOM.type === 'text') {

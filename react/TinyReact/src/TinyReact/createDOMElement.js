@@ -16,6 +16,10 @@ export default function createDOMElement(virtualDOM) {
     // 设置/更新元素属性
     updateElementNode(newElement, virtualDOM)
   }
+
+  // 将 Virtual DOM 挂载到真实 DOM 对象的属性中 方便在对比时获取其 Virtual DOM
+  newElement.__virtualDOM__ = virtualDOM
+
   // 递归渲染子节点
   virtualDOM.children.forEach((child) => {
     // 因为不确定子元素是 NativeElement 还是 Component 所以调用 mountElement 方法进行确定
