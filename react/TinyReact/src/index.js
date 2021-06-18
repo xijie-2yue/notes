@@ -113,9 +113,36 @@ class Cat extends TinyReact.Component {
   }
 }
 
-TinyReact.render(<Person name="张三" age={18} />, root)
+// TinyReact.render(<Person name="张三" age={18} />, root)
 
-setTimeout(() => {
-  // TinyReact.render(<Cat />, root)
-  TinyReact.render(<Person name="李四" age={20} />, root)
-}, 2000)
+// setTimeout(() => {
+//   // TinyReact.render(<Cat />, root)
+//   TinyReact.render(<Person name="李四" age={20} />, root)
+// }, 2000)
+
+class Ref extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    console.log('input value:', this.input.value)
+    console.log('cat:', this.cat)
+
+    this.input.value = ''
+  }
+
+  render() {
+    return (
+      <div>
+        <input type="text" ref={(input) => (this.input = input)} />
+        <button onClick={this.handleClick}>Button</button>
+        <Cat ref={(cat) => (this.cat = cat)} />
+      </div>
+    )
+  }
+}
+
+TinyReact.render(<Ref />, root)

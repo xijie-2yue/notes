@@ -20,10 +20,20 @@ export default function createDOMElement(virtualDOM) {
   // 将 Virtual DOM 挂载到真实 DOM 对象的属性中 方便在对比时获取其 Virtual DOM
   newElement.__virtualDOM__ = virtualDOM
 
+  // 如果有ref属性 且ref的值为函数 则将DOM作为形参传入
+  if (
+    virtualDOM.props &&
+    virtualDOM.props.ref &&
+    typeof virtualDOM.props.ref === 'function'
+  ) {
+    virtualDOM.props.ref(newElement)
+  }
+
   // 递归渲染子节点
   virtualDOM.children.forEach((child) => {
     // 因为不确定子元素是 NativeElement 还是 Component 所以调用 mountElement 方法进行确定
     mountElement(child, newElement)
   })
+
   return newElement
 }

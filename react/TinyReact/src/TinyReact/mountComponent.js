@@ -36,6 +36,14 @@ export default function mountComponent(virtualDOM, container, oldDOM) {
   // 如果是组件 调用组件的生命周期
   if (component) {
     component.componentDidMount()
+
+    if (
+      component.props &&
+      component.props.ref &&
+      typeof component.props.ref === 'function'
+    ) {
+      component.props.ref(component)
+    }
   }
 }
 
