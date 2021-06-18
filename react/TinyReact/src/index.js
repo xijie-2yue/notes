@@ -166,8 +166,8 @@ class PersonList extends TinyReact.Component {
   handleClick() {
     const newState = JSON.parse(JSON.stringify(this.state))
     // newState.persons.push(newState.persons.shift())
-    newState.persons.splice(1, 0, { id: 666, name: '亚索' })
-    console.log(newState)
+    // newState.persons.splice(1, 0, { id: 666, name: '亚索' })
+    newState.persons.pop()
     this.setState(newState)
   }
 

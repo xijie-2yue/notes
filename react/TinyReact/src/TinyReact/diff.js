@@ -2,6 +2,7 @@ import createDOMElement from './createDOMElement'
 import diffComponent from './diffComponent'
 import isFunction from './isFunction'
 import mountElement from './mountElement'
+import unmountNode from './unmountNode'
 import updateElementNode from './updateElementNode'
 import updateTextNode from './updateTextNode'
 
@@ -86,12 +87,31 @@ export default function diff(virtualDOM, container, oldDOM) {
     let oldChildNodes = oldDOM.childNodes
     // 如果旧节点的数量多于要渲染的新节点的长度
     if (oldChildNodes.length > virtualDOM.children.length) {
-      for (
-        let i = oldChildNodes.length - 1;
-        i > virtualDOM.children.length - 1;
-        i--
-      ) {
-        oldDOM.removeChild(oldChildNodes[i])
+      if (hasNotKey) {
+        for (
+          let i = oldChildNodes.length - 1;
+          i > virtualDOM.children.length - 1;
+          i--
+        ) {
+          oldDOM.removeChild(oldChildNodes[i])
+        }
+      } else {
+        // 通过key属性删除节点
+        for (let i = 0; i < oldChildNodes.length; i++) {
+          let oldChild = oldChildNodes[i]
+          let oldChildKey = oldChild.__virtualDOM__.props.key
+          let found = false
+          for (let j = 0; j < virtualDOM.children.length; j++) {
+            if (oldChildKey === virtualDOM.children[j].props.key) {
+              found = true
+              break
+            }
+          }
+          if (!found) {
+            // 新的VDOM中未找到该key值得元素
+            unmountNode(oldChild)
+          }
+        }
       }
     }
   }
