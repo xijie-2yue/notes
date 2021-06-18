@@ -145,4 +145,45 @@ class Ref extends TinyReact.Component {
   }
 }
 
-TinyReact.render(<Ref />, root)
+// TinyReact.render(<Ref />, root)
+
+class PersonList extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      persons: [
+        { id: 0, name: '张三' },
+        { id: 1, name: '李四' },
+        { id: 2, name: '王五' },
+        { id: 3, name: '赵六' },
+      ],
+    }
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    const newState = JSON.parse(JSON.stringify(this.state))
+    // newState.persons.push(newState.persons.shift())
+    newState.persons.splice(1, 0, { id: 666, name: '亚索' })
+    console.log(newState)
+    this.setState(newState)
+  }
+
+  render() {
+    return (
+      <div>
+        <ul>
+          {this.state.persons.map((person) => (
+            <li key={person.id}>{person.name}</li>
+            // <li>{person.name}</li>
+          ))}
+        </ul>
+        <button onClick={this.handleClick}>Button</button>
+      </div>
+    )
+  }
+}
+
+TinyReact.render(<PersonList />, root)

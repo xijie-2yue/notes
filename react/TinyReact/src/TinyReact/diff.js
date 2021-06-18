@@ -42,10 +42,44 @@ export default function diff(virtualDOM, container, oldDOM) {
       updateElementNode(oldDOM, virtualDOM, oldVirtualDOM)
     }
 
-    // 递归对比 Virtual DOM 的子元素
-    virtualDOM.children.forEach((child, i) => {
-      diff(child, oldDOM, oldDOM.childNodes[i])
-    })
+    // 1. 将拥有key的子元素存储起来
+    let keyedElements = {}
+    for (let i = 0, len = oldDOM.childNodes.length; i < len; i++) {
+      let domElement = oldDOM.childNodes[i]
+      if (domElement.nodeType === 1) {
+        // 元素节点
+        let key = domElement.getAttribute('key')
+        // 存在key值则存入 keyedElements
+        key && (keyedElements[key] = domElement)
+      }
+    }
+
+    // 判断是否有key值
+    let hasNotKey = Object.keys(keyedElements).length === 0
+    if (hasNotKey) {
+      // 递归对比 Virtual DOM 的子元素
+      virtualDOM.children.forEach((child, i) => {
+        diff(child, oldDOM, oldDOM.childNodes[i])
+      })
+    } else {
+      // 2. 循环 virtual DOM 的子元素 获取key值
+      virtualDOM.children.forEach((child, i) => {
+        let key = child.props.key
+        if (key || key == 0) {
+          let domElement = keyedElements[key]
+          if (domElement) {
+            // 3. 该元素是否应该处于该位置
+            if (oldDOM.childNodes[i] && oldDOM.childNodes[i] !== domElement) {
+              // 当前位置元素 与 key值元素位置 不一致 则将key值元素替换掉当前位置的元素
+              oldDOM.insertBefore(domElement, oldDOM.childNodes[i])
+            }
+          } else {
+            // 新增元素
+            mountElement(child, oldDOM, oldDOM.childNodes[i])
+          }
+        }
+      })
+    }
 
     // 删除多余节点
     // 获取旧节点的数量
